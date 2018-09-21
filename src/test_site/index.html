@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif !important;
+            background-color: #5E95D2;
+        }
+
+        .logoClass {
+            width: 300px;
+            height: auto;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1 50rem;
+            justify-items: center;
+        }
+
+        .container>div {
+            margin-top: 5rem;
+        }
+
+        .container>div>a {
+            margin-top: 1rem;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JWT test site</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper blue darken-3">
+            <a href="/" class="brand-logo center"><img alt="FutureGerald" class="logoClass" src="./img/logoWhiteTransparent.png" /></a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a href="/protected/index.html">CloudFlare <i class="material-icons right">lock</i></a></li>
+            </ul>
+        </div>
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="sass.html">Sass</a></li>
+            <li><a href="badges.html">Components</a></li>
+            <li><a href="collapsible.html">Javascript</a></li>
+            <li><a href="mobile.html">Mobile</a></li>
+        </ul>
+    </nav>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://unpkg.com/js-cookie@2.2.0/src/js.cookie.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems);
+        });
+    </script>
+    <div class="container">
+        <div class="card-panel grey lighten-5">
+            <span class="black-text">I am a very simple card. I am good at containing small bits of
+                information.
+                I am convenient because I require little markup to use effectively. I am similar to what is
+                called a panel in other frameworks.
+            </span>
+            <a class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>button</a>
+        </div>
+
+    </div>
+</body>
+
+</html>

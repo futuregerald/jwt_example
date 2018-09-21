@@ -1,0 +1,23 @@
+{
+  "name": "worker-auth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production && cd functions && node zip_functions.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/cookie": "^0.3.1",
+    "@types/jsonwebtoken": "^7.2.8",
+    "adm-zip": "^0.4.11",
+    "cookie": "^0.3.1",
+    "jsonwebtoken": "^8.3.0"
+  },
+  "devDependencies": {
+    "typescript": "^3.0.3",
+    "webpack": "^4.19.1",
+    "webpack-cli": "^3.1.0"
+  }
+}
