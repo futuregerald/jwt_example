@@ -15,7 +15,7 @@ fs.readdir(__dirname, (err, files) => {
     if (script !== 'zip_functions.js') {
       const name = script.substring(0, script.length - 3);
       const zip = new AdmZip();
-      zip.addLocalFile(script, `/${name}/`);
+      zip.addLocalFile(script, `/index.js/`);
       zip.addLocalFolder('./node_modules/', `/${name}/node_modules`);
       zip.writeZip(`./dist/${name}.zip`);
     }
