@@ -30,7 +30,7 @@ exports.handler = function(event, context, callback) {
     const token = generateJwt({claims: reqBody, exp: expTimes.exp })
     const response = {
         "jwt": token, 
-        "valid_through": expTimes.expReadable,
+        "valid_through": expTimes.readable,
         "test": "testing"
     }
 
