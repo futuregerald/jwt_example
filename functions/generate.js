@@ -31,7 +31,6 @@ exports.handler = function(event, context, callback) {
     const response = {
         "jwt": token, 
         "valid_through": expTimes.readable,
-        "test": "testing"
     }
 
     callback(null, {
