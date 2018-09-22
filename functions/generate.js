@@ -5,7 +5,7 @@ exports.handler = function(event, context, callback) {
     const getExpDate = () => {
         const exp = Math.floor(Date.now() / 1000) + (60 * 60)
         const expReadable = new Date(exp);
-        return {exp: exp,readable: expReadable}
+        return {exp: exp,readable: expReadable.toString()}
     } 
     
     const generateJwt = ({claims, exp})=>{
