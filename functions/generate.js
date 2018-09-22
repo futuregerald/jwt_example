@@ -4,8 +4,8 @@ var jwt = require('jsonwebtoken');
 exports.handler = function(event, context, callback) {
     const getExpDate = () => {
         const exp = Math.floor(Date.now() / 1000) + (60 * 60)
-        const expReadable = new Date(exp);
-        return {exp: exp,readable: expReadable.toString()}
+        // const expReadable = new Date(exp);
+        return exp
     } 
     
     const generateJwt = ({claims, exp})=>{
@@ -27,10 +27,10 @@ exports.handler = function(event, context, callback) {
     const reqBody = JSON.parse(event.body)
     // generating exp date
     const expTimes = getExpDate()
-    const token = generateJwt({claims: reqBody, exp: expTimes.exp })
+    const token = generateJwt({claims: reqBody, exp: exp })
     const response = {
         "jwt": token, 
-        "valid_through": expTimes.readable,
+        "exe": expTimes.exp,
     }
 
     callback(null, {
