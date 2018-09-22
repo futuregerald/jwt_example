@@ -1,5 +1,6 @@
-const jwt = require('jsonwebtoken');
-import jwt from 'jsonwebtoken'
+
+var jwt = require('jsonwebtoken');
+
 exports.handler = function(event, context, callback) {
     const getExpDate = () => {
         const exp = Math.floor(Date.now() / 1000) + (60 * 60)
