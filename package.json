@@ -13,6 +13,7 @@
     "@types/jsonwebtoken": "^7.2.8",
     "adm-zip": "^0.4.11",
     "cookie": "^0.3.1",
+    "eslint": "^5.6.0",
     "jsonwebtoken": "^8.3.0",
     "netlify-lambda": "^0.4.0"
   },
