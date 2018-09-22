@@ -27,10 +27,10 @@ exports.handler = function(event, context, callback) {
     const reqBody = JSON.parse(event.body)
     // generating exp date
     const expTimes = getExpDate()
-    const token = generateJwt({claims: reqBody, exp: exp })
+    const token = generateJwt({claims: reqBody, exp: expTimes })
     const response = {
         "jwt": token, 
-        "exe": expTimes.exp,
+        "exep": expTimes,
     }
 
     callback(null, {
