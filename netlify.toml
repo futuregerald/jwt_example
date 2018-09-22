@@ -1,4 +1,4 @@
 [build]
   publish = "src/test_site"
-  functions = "functions/dist/"
+  functions = "functions/dist"
   command = "npm run build"
