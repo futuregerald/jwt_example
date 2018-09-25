@@ -1,2 +1,2 @@
 /protected_netlify/*    200!    Role=user,editor
-/* /autherror.html 404!
+/protected_netlify/* /autherror.html 404!
