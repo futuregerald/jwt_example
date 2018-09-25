@@ -63,14 +63,6 @@
             <li><a href="mobile.html">Mobile</a></li>
         </ul>
     </nav>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://unpkg.com/js-cookie@2.2.0/src/js.cookie.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var elems = document.querySelectorAll('.sidenav');
-            var instances = M.Sidenav.init(elems);
-        });
-    </script>
     <div class="container">
         <div class="card-panel grey lighten-5">
             <span class="black-text">I am a very simple card. I am good at containing small bits of
@@ -80,14 +72,37 @@
             </span><br />
 
             <div class="buttons">
-                <a class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Get JWT</a>
+                <a id="get-good-jwt" class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Get
+                    JWT</a>
                 <a class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Get JWT with invalid
                     signature</a>
                 <a class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Clear JWT cookie</a>
             </div>
         </div>
-
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+    <script>
+        const getGoodToken = () => {
+            try {
+                const response = axios.post('/.netlify/functions/generate')
+                const token = response.data.data.jwt
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        const goodTokenButton = document.getElementById('get-good-jwt')
+        goodTokenButton.addEventListener(onclick, (e) => {
+            console.log(e)
+        })
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.0/js.cookie.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems);
+        });
+    </script>
 </body>
 
 </html>
