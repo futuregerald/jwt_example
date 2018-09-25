@@ -88,6 +88,7 @@
             }
             try {
                 const response = axios.post('/.netlify/functions/generate', JSON.stringify(data))
+                console.log(response)
                 const {
                     jwt
                 } = response.data
