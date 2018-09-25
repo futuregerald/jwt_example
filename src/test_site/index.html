@@ -84,7 +84,9 @@
     <script>
         const getGoodToken = async () => {
             const data = {
-                gerald: "is awesome"
+                claims: {
+                    gerald: "is awesome"
+                }
             }
             try {
                 const response = await axios.post('/.netlify/functions/generate', JSON.stringify(data))
