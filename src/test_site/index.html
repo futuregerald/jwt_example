@@ -56,8 +56,11 @@
             <a href="/" class="brand-logo center"><img alt="FutureGerald" class="logoClass" src="./img/logoWhiteTransparent.png" /></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="/protected/index.html">CloudFlare Protected <i class="material-icons right">lock</i></a></li>
-                <li><a href="/protected_netlify/index.html">Netlify Protected <i class="material-icons right">lock</i></a></li>
+                <li><a href="/protected/index.html">CloudFlare Worker <i class="material-icons right">lock</i></a></li>
+                <li><a href="/protected_netlify/index.html">Netlify Auth <i class="material-icons right">lock</i></a></li>
+            </ul>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/api/">Secure Proxying <i class="material-icons right">lock</i></a></li>
             </ul>
         </div>
         <ul class="sidenav" id="mobile-demo">
@@ -69,7 +72,8 @@
     </nav>
     <div class="container">
         <div class="card-panel grey lighten-5">
-            <span class="black-text">Hi! this is a simple page with three buttons and two links. The page is connected
+            <span class="black-text">Hi! this is a simple page with four buttons and three links. The purpose of this
+                page is to demonstrate how to use JWT for performant and secure requests. The page is connected
                 to a couple of lambda functions for generating and clearing JWT's, and links to routes that are
                 protected by JWT using both cloudflare workers and netlify role based route protection. The data in the
                 inputs is just used to add custom "claims" to the JWT.
