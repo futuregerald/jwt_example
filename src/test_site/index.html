@@ -26,6 +26,16 @@
         .container>div>a {
             margin-top: 1rem;
         }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-column-gap: 1rem;
+        }
+
+        .buttons>a {
+            margin-top: 1rem;
+        }
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,7 +52,8 @@
             <a href="/" class="brand-logo center"><img alt="FutureGerald" class="logoClass" src="./img/logoWhiteTransparent.png" /></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="/protected/index.html">CloudFlare <i class="material-icons right">lock</i></a></li>
+                <li><a href="/protected/index.html">CloudFlare Protected <i class="material-icons right">lock</i></a></li>
+                <li><a href="/protected_netlify/index.html">Netlify Protected <i class="material-icons right">lock</i></a></li>
             </ul>
         </div>
         <ul class="sidenav" id="mobile-demo">
@@ -67,10 +78,13 @@
                 I am convenient because I require little markup to use effectively. I am similar to what is
                 called a panel in other frameworks.
             </span><br />
-            <a class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Get JWT</a>
-            <a class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Get JWT with invalid
-                signature</a>
-            <a class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Clear JWT cookie</a>
+
+            <div class="buttons">
+                <a class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Get JWT</a>
+                <a class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Get JWT with invalid
+                    signature</a>
+                <a class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Clear JWT cookie</a>
+            </div>
         </div>
 
     </div>

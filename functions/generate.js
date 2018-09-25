@@ -24,7 +24,9 @@ exports.handler = function(event, context, callback) {
     
     }
     // parsing the inbound request
-    const {claims,secret} = JSON.parse(event.body)
+    const parsedBody = JSON.parse(event.body)
+    console.log(parsedBody)
+    const {claims,secret}  = parsedBody
 
     // generating exp date
     const expTimes = getExpDate()
