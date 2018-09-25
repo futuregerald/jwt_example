@@ -87,11 +87,12 @@
                 gerald: "is awesome"
             }
             try {
-                const response = axios.post('/.netlify/functions/generate', JSON.stringify(data))
+                const response = await axios.post('/.netlify/functions/generate', JSON.stringify(data))
                 console.log(response)
                 const {
                     jwt
-                } = response.data
+                } = response.data.data;
+                console.log(jwt)
             } catch (err) {
                 console.log(err)
             }
