@@ -8,26 +8,27 @@ exports.handler = function(event, context, callback) {
         return exp
     } 
     
-    const generateJwt = ({claims, exp})=>{
+    const generateJwt = ({claims, exp, secret})=>{ 
         return jwt.sign({
             exp: exp,
             data: {
                 app_metadata: {
                 "roles": [
                   "user",
-                  "cms"
+                  'cms'
                 ]
               },
               "user_metadata": claims
             }
-          }, 'superSecret');
+          }, secret ? secret : 'superSecret');
     
     }
     // parsing the inbound request
-    const reqBody = JSON.parse(event.body)
+    const {claims,secret} = JSON.parse(event.body)
+
     // generating exp date
     const expTimes = getExpDate()
-    const token = generateJwt({claims: reqBody, exp: expTimes })
+    const token = generateJwt({claims: claims, exp: expTimes, secret: secret })
     const response = {
         "jwt": token, 
         "exep": expTimes,
