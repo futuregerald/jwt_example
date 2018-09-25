@@ -8,6 +8,10 @@
             background-color: #5E95D2;
         }
 
+        strong {
+            font-weight: bold !important;
+        }
+
         .logoClass {
             width: 300px;
             height: auto;
@@ -29,7 +33,7 @@
 
         .buttons {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1.5fr 1fr 1fr;
             grid-column-gap: 1rem;
         }
 
@@ -65,18 +69,51 @@
     </nav>
     <div class="container">
         <div class="card-panel grey lighten-5">
-            <span class="black-text">I am a very simple card. I am good at containing small bits of
-                information.
-                I am convenient because I require little markup to use effectively. I am similar to what is
-                called a panel in other frameworks.
-            </span><br />
+            <span class="black-text">Hi! this is a simple page with three buttons and two links. The page is connected
+                to a couple of lambda functions for generating and clearing JWT's, and links to routes that are
+                protected by JWT using both cloudflare workers and netlify role based route protection. The data in the
+                inputs is just used to add custom "claims" to the JWT.
+
+                Below are
+                descriptions
+                on what the buttons do:
+
+                <ul class="collection">
+                    <li class="collection-item"><strong>GET JWT: </strong> <br>This will generate a jwt that contains
+                        the information you
+                        enter on this page, and
+                        will expire in 1 hour. The JWT is saved in a cookie called <code>nf_jwt</code> </li>
+                    <li class="collection-item"> <strong>GET JWT W/ INVALID SIGNATURE:</strong> <br> This will generate
+                        a JWT using the
+                        same
+                        information, but signed
+                        with a different secret. It will not validate.</li>
+                    <li class="collection-item"><strong>CLEAR JWT COOKIE:</strong> <br> This will delete the <code>nf_jwt</code>
+                        cookie. </li>
+                    </li>
+                </ul>
+            </span> <br /><br />
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="name" type="text" class="validate">
+                    <label for="name">Name</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="email" type="email" class="validate">
+                    <label for="email">Email</label>
+                </div>
+            </div>
+            <br />
 
             <div class="buttons">
                 <a class="waves-effect waves-light btn" id="get-good-jwt"><i class="material-icons right">cloud</i>Get
                     JWT</a>
-                <a class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Get JWT with invalid
+                <a class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Get JWT w/
+                    invalid
                     signature</a>
-                <a class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Clear JWT cookie</a>
+                <a class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Clear JWT
+                    cookie</a>
+                <a class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Verify JWT</a>
             </div>
         </div>
     </div>
@@ -85,16 +122,16 @@
         const getGoodToken = async () => {
             const data = {
                 claims: {
-                    gerald: "is awesome"
-                }
+                    gerald: "is awesome",
+                    geraldo: "is also amazing"
+                },
             }
             try {
                 const response = await axios.post('/.netlify/functions/generate', JSON.stringify(data))
-                console.log(response)
+
                 const {
                     jwt
                 } = response.data;
-                console.log(jwt)
             } catch (err) {
                 console.log(err)
             }
@@ -102,7 +139,6 @@
         const goodTokenButton = document.getElementById('get-good-jwt')
         goodTokenButton.addEventListener("click", (e) => {
             getGoodToken();
-            console.log(e);
         })
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
