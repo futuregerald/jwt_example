@@ -30,7 +30,7 @@ exports.handler = function(event, context, callback) {
   const token = generateJwt({ claims, exp: expTimes, secret });
   const response = {
     jwt: token,
-    exep: expTimes,
+    exp: expTimes,
   };
 
   callback(null, {
