@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cookie": "^0.3.1",
     "jsonwebtoken": "^8.3.0"
   }
 }

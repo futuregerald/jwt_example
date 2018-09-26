@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "cd functions && npm install && cd .. && netlify-lambda build functions"
+    "build": "cd functions && npm install && cd .. && netlify-lambda build functions",
+    "build-worker": "webpack --mode production && cd functions && npm install && cd .. && netlify-lambda build functions"
   },
   "author": "",
   "license": "ISC",

@@ -1,31 +1,32 @@
-
 const jwt = require('jsonwebtoken');
 const cookie = require('cookie');
 
-addEventListener("fetch", event => {
-  const headers = new Map(event.request.headers);
+const verifyUser = (jwt) => {
+  jwt.verify(token, 'superSecret', { algorithms: ['HS256'] }, (err, payload) => {
+    if (err) {
+      return {isValid: false, payload: payload}
+    }
+    return {isValid: true, payload: payload}
+  });
+}
+
+const handleRequest = async (request) => {
+  const headers = new Map(request.headers);
+  const cookieHeader = headers.get('cookie');
+  const cookies = cookie.parse(cookieHeader);
+  console.log(cookies);
+  console.log(cookies.nf_jwt);
+  const verifyResponse = verifyUser(cookies.nf_jwt);
+  if (!verifyResponse.isValid){
+    const response = await fetch('/404.html');
+    return response
+  }
+  const response = await fetch(request);
+  return response;
+}
+
+addEventListener('fetch', event => {
   console.log(event.request);
   event.respondWith(handleRequest(event.request));
 });
 
-
-
-async function handleRequest(request) {
-  console.log("Got request", request);
-  const response = await fetch(request);
-  console.log("Got response", response);
-  return response;
-}
-
-const token =
-  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJuZXRsaWZ5Iiwic2hhMjU2IjoiZjU5YTgyNGEzYTRhOTFiOWI0MDUyN2UyNmI4ZGExZWE0MzMwNDQ4OTA1OGEwN2UzZWI3Nzc1NWYwOWU0OTBlZCJ9._ezHgQtsQriaFdqYoqiTNgUpjQT3px-_DLHByzrYJug";
-
-const decoded = jwt.verify(token, "testnyc");
-console.log(decoded);
-
-jwt.verify(token, "testnyc", { algorithms: ["HS256"] }, function(err, payload) {
-  if (err) {
-    return console.log("looks like there is an error: ", err.message);
-  }
-  return console.log("we got a valid cert!: ", payload);
-});
