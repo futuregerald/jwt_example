@@ -142,6 +142,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.0/js.cookie.min.js"></script>
     <script>
+        const getInputValues = () => {
+            const name = document.getElementById('name')
+            const email = document.getElementById('email')
+            const nameEmail = {
+                name: name.value || 'Test Name',
+                email: email.value || 'fake@email.com'
+            }
+            return nameEmail
+        }
+
         const getToken = () => {
             const jwtFromCookie = Cookies.get('nf_jwt');
             const jwtSection = document.getElementById('jwt-section')
@@ -177,11 +187,9 @@
             }
         }
         const getGoodToken = async () => {
+
             const data = {
-                claims: {
-                    gerald: "is awesome",
-                    geraldo: "is also amazing"
-                },
+                claims: getInputValues(),
                 secret: 'superSecret'
             }
             try {
@@ -200,10 +208,7 @@
         }
         const getBadToken = async () => {
             const data = {
-                claims: {
-                    gerald: "is awesome",
-                    geraldo: "is also amazing"
-                },
+                claims: getInputValues(),
                 secret: 'badSecret'
             }
             try {
