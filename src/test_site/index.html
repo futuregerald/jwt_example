@@ -123,9 +123,27 @@
                     JWT</a>
             </div>
         </div>
+        <div class="card-panel grey lighten-5" id="jwt-card" style="display: none;">
+            <span class="black-text">
+                <h5>This is your current JWT:</h5>
+                <p id="jwt-section">testing</p>
+            </span>
+
+        </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.0/js.cookie.min.js"></script>
     <script>
+        const getToken = () => {
+            const jwtFromCookie = Cookies.get('nf_jwt');
+            const jwtSection = document.getElementById('jwt-section')
+            const jwtCard = document.getElementById('jwt-card')
+            if (jwtFromCookie) {
+                jwtCard.style.display = "block";
+                jwtSection.innerHTML = jwtFromCookie;
+            }
+        }
         const deleteJwtCookie = () => {
             const deleteCookie = Cookies.remove('nf_jwt');
             console.log(deleteCookie)
@@ -211,9 +229,9 @@
         deleteJwtCookieButton.addEventListener("click", (e) => {
             deleteJwtCookie();
         })
+        browser.cookies.onChanged.addListener(getToken)
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.0/js.cookie.min.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('.sidenav');
