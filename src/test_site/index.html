@@ -170,10 +170,36 @@
                 console.log(err)
             }
         }
+        const getBadToken = async () => {
+            const data = {
+                claims: {
+                    gerald: "is awesome",
+                    geraldo: "is also amazing"
+                },
+                secret: 'badSecret'
+            }
+            try {
+                const response = await axios.post('/.netlify/functions/generate', JSON.stringify(data))
+
+                const {
+                    jwt
+                } = response.data;
+                Cookies.set('nf_jwt', jwt, {
+                    expires: 1
+                });
+            } catch (err) {
+                console.log(err)
+            }
+        }
         // event handlers
         const goodTokenButton = document.getElementById('get-good-jwt')
         goodTokenButton.addEventListener("click", (e) => {
             getGoodToken();
+        })
+
+        const badTokenButton = document.getElementById('get-bad-jwt')
+        badTokenButton.addEventListener("click", (e) => {
+            getBadToken();
         })
 
         const verifyTokenButton = document.getElementById('verify-jwt')
