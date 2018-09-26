@@ -11,12 +11,13 @@ exports.handler = function(event, context, callback) {
     jwt.sign(
       {
         exp,
-        data: {
-          app_metadata: {
-            roles: ['user', 'cms'],
-          },
-          user_metadata: claims,
+        app_metadata: {
+            authorization: {
+                roles: ['user', 'cms'],
+                },
         },
+        user_metadata: claims,
+     
       },
       secret
     );
