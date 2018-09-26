@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const uuidv4 = require('uuid/v4');
 
 exports.handler = function(event, context, callback) {
   const getExpDate = () => {
@@ -12,12 +13,12 @@ exports.handler = function(event, context, callback) {
       {
         exp,
         app_metadata: {
-            authorization: {
-                roles: ['user', 'cms'],
-                },
+          user_id: uuidv4(),
+          authorization: {
+            roles: ['user', 'cms'],
+          },
         },
         user_metadata: claims,
-     
       },
       secret
     );

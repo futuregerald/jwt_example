@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "cookie": "^0.3.1",
-    "jsonwebtoken": "^8.3.0"
+    "jsonwebtoken": "^8.3.0",
+    "uuid": "^3.3.2"
   }
 }
