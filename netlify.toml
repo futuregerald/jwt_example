@@ -2,3 +2,10 @@
   publish = "src/test_site/"
   functions = "functions/dist"
   command = "npm run build"
+
+  [[redirects]]
+  from = "/api"
+  to = "https://futuregerald-requestbin.herokuapp.com/tw63n2tw"
+  status = 200
+  force = true
+  signed = "TESTING"
