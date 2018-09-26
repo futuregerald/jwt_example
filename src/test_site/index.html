@@ -65,14 +65,13 @@
                 <li><a href="/protected_netlify/index.html">Netlify Auth <i class="material-icons right">lock</i></a></li>
             </ul>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="/api/">Secure Proxying <i class="material-icons right">lock</i></a></li>
+                <li><a href="/api/">Signed Redirects <i class="material-icons right">lock</i></a></li>
             </ul>
         </div>
         <ul class="sidenav" id="mobile-demo">
-            <li><a href="sass.html">Sass</a></li>
-            <li><a href="badges.html">Components</a></li>
-            <li><a href="collapsible.html">Javascript</a></li>
-            <li><a href="mobile.html">Mobile</a></li>
+            <li><a href="/protected/index.html">CloudFlare Worker</a></li>
+            <li><a href="/protected_netlify/index.html">Netlify Auth</a></li>
+            <li><a href="/api/">Signed Proxying</a></li>
         </ul>
     </nav>
     <div class="container">
@@ -246,9 +245,7 @@
             deleteJwtCookie();
         })
         getToken();
-    </script>
 
-    <script>
         document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('.sidenav');
             var instances = M.Sidenav.init(elems);
