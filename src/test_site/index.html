@@ -155,6 +155,7 @@
                     gerald: "is awesome",
                     geraldo: "is also amazing"
                 },
+                secret: 'superSecret'
             }
             try {
                 const response = await axios.post('/.netlify/functions/generate', JSON.stringify(data))

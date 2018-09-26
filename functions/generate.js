@@ -18,7 +18,7 @@ exports.handler = function(event, context, callback) {
           user_metadata: claims,
         },
       },
-      secret || 'superSecret'
+      secret
     );
   // parsing the inbound request
   const parsedBody = JSON.parse(event.body);

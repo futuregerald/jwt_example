@@ -11,14 +11,14 @@ exports.handler = function(event, context, callback) {
     if (err) {
       console.log('looks like there is an error: ', err.message);
       return callback(null, {
-        statusCode: 200,
+        statusCode: 401,
         body: JSON.stringify(err.message),
       });
     }
 
     return callback(null, {
       statusCode: 200,
-      body: 'Thats a valid JWT!',
+      body: 'Signature verified',
     });
   });
 };
