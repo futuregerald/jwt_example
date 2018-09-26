@@ -3337,12 +3337,13 @@ exports.handler = function (event, context, callback) {
 
   const generateJwt = ({ claims, exp, secret }) => jwt.sign({
     exp,
-    data: {
-      app_metadata: {
+    app_metadata: {
+      authorization: {
         roles: ['user', 'cms']
-      },
-      user_metadata: claims
-    }
+      }
+    },
+    user_metadata: claims
+
   }, secret);
   // parsing the inbound request
   const parsedBody = JSON.parse(event.body);

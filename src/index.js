@@ -5,7 +5,11 @@ const verifyUser = token => jwt.verify(token, 'superSecret', { algorithms: ['HS2
     if (err) {
       return {isValid: false, payload: err.message}
     }
+    const hasUserRole = payload.app_metadata.authorization.roles.includes('user')
+    if (hasUserRole){
     return {isValid: true, payload: payload}
+  }
+  return {isValid: false, payload: "User does not have proper permissions"}
   });
 
 const handleRequest = async request => {
