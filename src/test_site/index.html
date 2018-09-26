@@ -124,9 +124,8 @@
             </div>
         </div>
         <div class="card-panel grey lighten-5" id="jwt-card" style="display: none;">
-            <span class="black-text">
+            <span class="black-text" id="jwt-section">
                 <h5>This is your current JWT:</h5>
-                <p id="jwt-section">testing</p>
             </span>
 
         </div>
@@ -141,7 +140,7 @@
             const jwtCard = document.getElementById('jwt-card')
             if (jwtFromCookie) {
                 jwtCard.style.display = "block";
-                jwtSection.innerHTML = jwtFromCookie;
+                jwtSection.innerHTML = '<h5>This is your current JWT:</h5>' + jwtFromCookie;
             } else {
                 jwtCard.style.display = "none";
             }
