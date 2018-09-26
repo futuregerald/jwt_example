@@ -75,99 +75,12 @@
             <span class="black-text">
                 <h2>This is the 404.html page</h2>
 
-            </span> <br /><br />
+            </span>
 
         </div>
     </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
-    <script>
-        const deleteJwtCookie = () => {
-            const deleteCookie = Cookies.remove('nf_jwt');
-            console.log(deleteCookie)
-
-        }
-        const verifyToken = async () => {
-            const currentToken = Cookies.get('nf_jwt');
-            const data = {
-                jwt: currentToken
-            }
-            try {
-                const response = await axios.post('/.netlify/functions/verify', data)
-
-                const {
-                    jwt
-                } = response.data;
-                Cookies.set('nf_jwt', jwt, {
-                    expires: 1
-                });
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        const getGoodToken = async () => {
-            const data = {
-                claims: {
-                    gerald: "is awesome",
-                    geraldo: "is also amazing"
-                },
-                secret: 'superSecret'
-            }
-            try {
-                const response = await axios.post('/.netlify/functions/generate', JSON.stringify(data))
-
-                const {
-                    jwt
-                } = response.data;
-                Cookies.set('nf_jwt', jwt, {
-                    expires: 1
-                });
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        const getBadToken = async () => {
-            const data = {
-                claims: {
-                    gerald: "is awesome",
-                    geraldo: "is also amazing"
-                },
-                secret: 'badSecret'
-            }
-            try {
-                const response = await axios.post('/.netlify/functions/generate', JSON.stringify(data))
-
-                const {
-                    jwt
-                } = response.data;
-                Cookies.set('nf_jwt', jwt, {
-                    expires: 1
-                });
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        // event handlers
-        const goodTokenButton = document.getElementById('get-good-jwt')
-        goodTokenButton.addEventListener("click", (e) => {
-            getGoodToken();
-        })
-
-        const badTokenButton = document.getElementById('get-bad-jwt')
-        badTokenButton.addEventListener("click", (e) => {
-            getBadToken();
-        })
-
-        const verifyTokenButton = document.getElementById('verify-jwt')
-        verifyTokenButton.addEventListener("click", (e) => {
-            verifyToken();
-        })
-
-        const deleteJwtCookieButton = document.getElementById('delete-jwt-cookie')
-        deleteJwtCookieButton.addEventListener("click", (e) => {
-            deleteJwtCookie();
-        })
-    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.0/js.cookie.min.js"></script>
     <script>
