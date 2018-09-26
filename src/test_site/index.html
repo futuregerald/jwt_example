@@ -112,17 +112,43 @@
             <div class="buttons">
                 <a class="waves-effect waves-light btn" id="get-good-jwt"><i class="material-icons right">cloud</i>Get
                     JWT</a>
-                <a class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Get JWT w/
+                <a class="waves-effect waves-light btn" id="get-bad-jwt"><i class="material-icons right">cloud</i>Get
+                    JWT w/
                     invalid
                     signature</a>
-                <a class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Clear JWT
+                <a class="waves-effect waves-light btn" id="delete-jwt-cookie"><i class="material-icons right">cloud</i>Clear
+                    JWT
                     cookie</a>
-                <a class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Verify JWT</a>
+                <a class="waves-effect waves-light btn" id="verify-jwt"><i class="material-icons right">cloud</i>Verify
+                    JWT</a>
             </div>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
     <script>
+        const deleteJwtCookie = () => {
+            const deleteCookie = Cookies.remove('nf_jwt');
+            console.log(deleteCookie)
+
+        }
+        const verifyToken = async () => {
+            const currentToken = Cookies.get('nf_jwt');
+            const data = {
+                jwt: currentToken
+            }
+            try {
+                const response = await axios.post('/.netlify/functions/verify', JSON.stringify(data))
+
+                const {
+                    jwt
+                } = response.data;
+                Cookies.set('nf_jwt', jwt, {
+                    expires: 1
+                });
+            } catch (err) {
+                console.log(err)
+            }
+        }
         const getGoodToken = async () => {
             const data = {
                 claims: {
@@ -143,9 +169,20 @@
                 console.log(err)
             }
         }
+        // event handlers
         const goodTokenButton = document.getElementById('get-good-jwt')
         goodTokenButton.addEventListener("click", (e) => {
             getGoodToken();
+        })
+
+        const verifyTokenButton = document.getElementById('verify-jwt')
+        verifyTokenButton.addEventListener("click", (e) => {
+            verifyToken();
+        })
+
+        const verifyTokenButton = document.getElementById('delete-jwt-cookie')
+        verifyTokenButton.addEventListener("click", (e) => {
+            deleteJwtCookie();
         })
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
