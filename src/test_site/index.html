@@ -142,12 +142,14 @@
             if (jwtFromCookie) {
                 jwtCard.style.display = "block";
                 jwtSection.innerHTML = jwtFromCookie;
+            } else {
+                jwtCard.style.display = "none";
             }
         }
         const deleteJwtCookie = () => {
             const deleteCookie = Cookies.remove('nf_jwt');
-            console.log(deleteCookie)
-
+            console.log(deleteCookie);
+            getToken();
         }
         const verifyToken = async () => {
             const currentToken = Cookies.get('nf_jwt');
@@ -184,6 +186,7 @@
                 Cookies.set('nf_jwt', jwt, {
                     expires: 1
                 });
+                getToken();
             } catch (err) {
                 console.log(err)
             }
@@ -205,6 +208,7 @@
                 Cookies.set('nf_jwt', jwt, {
                     expires: 1
                 });
+                getToken();
             } catch (err) {
                 console.log(err)
             }
@@ -229,7 +233,7 @@
         deleteJwtCookieButton.addEventListener("click", (e) => {
             deleteJwtCookie();
         })
-        browser.cookies.onChanged.addListener(getToken)
+        getToken();
     </script>
 
     <script>
