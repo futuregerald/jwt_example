@@ -7,18 +7,23 @@ exports.handler = function(event, context, callback) {
 
   console.log(decoded);
 
-  jwt.verify(token, 'testnyc', { algorithms: ['HS256'] }, (err, payload) => {
-    if (err) {
-      console.log('looks like there is an error: ', err.message);
+  jwt.verify(
+    token,
+    'superSecret',
+    { algorithms: ['HS256'] },
+    (err, payload) => {
+      if (err) {
+        console.log('looks like there is an error: ', err.message);
+        return callback(null, {
+          statusCode: 401,
+          body: JSON.stringify(err.message),
+        });
+      }
+
       return callback(null, {
-        statusCode: 401,
-        body: JSON.stringify(err.message),
+        statusCode: 200,
+        body: 'Signature verified',
       });
     }
-
-    return callback(null, {
-      statusCode: 200,
-      body: 'Signature verified',
-    });
-  });
+  );
 };
